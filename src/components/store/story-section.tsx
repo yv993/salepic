@@ -13,7 +13,7 @@ export function StorySection() {
     <section className="relative overflow-hidden border-y border-border/60 bg-card/30 py-24">
       {/* faint world/route backdrop */}
       <div className="bg-grid pointer-events-none absolute inset-0 opacity-50" />
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_60%_at_20%_30%,rgba(224,145,58,0.10),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_60%_at_20%_30%,rgba(217, 164, 65,0.10),transparent_60%)]" />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-[1.1fr_1fr]">
         <div>

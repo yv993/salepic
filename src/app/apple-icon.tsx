@@ -13,7 +13,7 @@ export default function AppleIcon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#1a1410",
+          background: "#0b0b0d",
         }}
       >
         <div
@@ -24,8 +24,8 @@ export default function AppleIcon() {
             alignItems: "center",
             justifyContent: "center",
             borderRadius: 22,
-            border: "5px dashed #e0913a",
-            color: "#e0913a",
+            border: "5px dashed #d9a441",
+            color: "#d9a441",
             fontSize: 92,
             fontWeight: 700,
             fontFamily: "Georgia, serif",

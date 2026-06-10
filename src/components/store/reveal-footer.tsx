@@ -26,14 +26,14 @@ export function RevealFooter({ children }: { children: React.ReactNode }) {
   return (
     <div
       ref={ref}
-      className="sticky bottom-0 z-0 overflow-hidden bg-[#1a1410] text-[#f3e9d8]"
+      className="sticky bottom-0 z-0 overflow-hidden bg-[#0b0b0d] text-[#ece8e1]"
     >
       <div className="relative">
         {/* giant kinetic wordmark, behind the columns */}
         <motion.span
           aria-hidden
           style={reduce ? { opacity: 0.06 } : { y: wordY, opacity: wordOpacity }}
-          className="pointer-events-none absolute inset-x-0 bottom-[-1.5vw] select-none text-center font-heading text-[24vw] leading-none font-bold tracking-tight text-[#ce9e62]/[0.10]"
+          className="pointer-events-none absolute inset-x-0 bottom-[-1.5vw] select-none text-center font-heading text-[24vw] leading-none font-bold tracking-tight text-[#d9a441]/[0.10]"
         >
           Posted.
         </motion.span>

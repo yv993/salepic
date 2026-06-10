@@ -40,10 +40,10 @@ export function WebGLShader() {
       xScale: { value: 1.0 },
       yScale: { value: 0.5 },
       distortion: { value: 0.06 },
-      // sRGB 0–1 brand colours mapped straight to the filaments.
-      uClay: { value: new THREE.Vector3(193 / 255, 67 / 255, 46 / 255) },
-      uGold: { value: new THREE.Vector3(206 / 255, 158 / 255, 98 / 255) },
-      uSteel: { value: new THREE.Vector3(75 / 255, 103 / 255, 119 / 255) },
+      // Obsidian Atelier palette: terracotta clay, burnished gold, slate steel.
+      uClay: { value: new THREE.Vector3(193 / 255, 84 / 255, 58 / 255) },
+      uGold: { value: new THREE.Vector3(217 / 255, 164 / 255, 65 / 255) },
+      uSteel: { value: new THREE.Vector3(93 / 255, 111 / 255, 116 / 255) },
       uMouse: { value: [0, 0] as [number, number] },
     };
     // Smoothed pointer target in shader space (set on pointermove, lerped in loop).
@@ -132,7 +132,7 @@ export function WebGLShader() {
         antialias: true,
         powerPreference: "low-power",
       });
-      renderer.setClearColor(new THREE.Color(0x0c0a06));
+      renderer.setClearColor(new THREE.Color(0x0b0b0d));
       scene = new THREE.Scene();
       camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, -1);
 

@@ -172,53 +172,53 @@
   --sidebar-ring: #b0492f;
 }
 
-/* ------------------------------------ dark theme — rusted red / gold / steel */
+/* ----------------------------- dark theme — "Obsidian Atelier" (gold accent) */
 .dark {
-  --background: #232323; /* page a touch deeper so #2c2c2c reads as elevation */
-  --foreground: #ece6df; /* warm off-white — 11.3:1 on cards, 12.7:1 on bg */
-  --card: #2c2c2c;
-  --card-foreground: #ece6df;
-  --popover: #2c2c2c;
-  --popover-foreground: #ece6df;
-  --primary: #c1432e; /* deep rusted red — fills/large only */
-  --primary-foreground: #fbf4ee; /* near-white btn text — 4.69:1 on the red (AA) */
-  --secondary: #34302e;
-  --secondary-foreground: #ece6df;
-  --muted: #322e2c;
-  --muted-foreground: #b4aaa0; /* 6.1:1 on cards (AA) */
-  --accent: #34302e;
-  --accent-foreground: #ece6df;
-  --destructive: #ee7259; /* distinct brighter red — 4.78:1 (AA) so errors ≠ primary */
-  --border: rgba(236, 230, 223, 0.12);
-  --input: rgba(236, 230, 223, 0.16);
-  --ring: #c1432e;
-  --chart-1: #c1432e;
-  --chart-2: #ce9e62;
-  --chart-3: #4b6777;
-  --chart-4: #d98a2b;
+  --background: #0b0b0d; /* obsidian near-black canvas */
+  --foreground: #ece8e1; /* warm off-white — 14.9:1 on cards, 16:1 on bg */
+  --card: #161518; /* warm-tinted elevation, reads above the canvas */
+  --card-foreground: #ece8e1;
+  --popover: #161518;
+  --popover-foreground: #ece8e1;
+  --primary: #d9a441; /* burnished gold — CTAs, links, active, focus */
+  --primary-foreground: #161310; /* near-black on gold — 8.2:1 (AAA) */
+  --secondary: #201d1a;
+  --secondary-foreground: #ece8e1;
+  --muted: #1b1a1d;
+  --muted-foreground: #a39c93; /* 6.7:1 on cards (AA) */
+  --accent: #201d1a;
+  --accent-foreground: #ece8e1;
+  --destructive: #ef6a4f; /* distinct coral — 5.9:1, never reads as the gold/clay accents */
+  --border: rgba(236, 232, 225, 0.1);
+  --input: rgba(236, 232, 225, 0.14);
+  --ring: #d9a441;
+  --chart-1: #d9a441;
+  --chart-2: #c1543a;
+  --chart-3: #5d6f74;
+  --chart-4: #c9883f;
   --chart-5: #9c6b4a;
 
   /* Brand hue tokens, retuned for dark (override the @theme defaults in .dark
      scope only — light theme keeps its values). Drives gradients/accents,
      spotlight/scrollbar/selection (which reference --color-clay), aurora, etc. */
-  --color-clay: #c1432e;
-  --color-clay-deep: #a5371f;
-  --color-amber: #ce9e62;
-  --color-gold: #ce9e62;
-  --color-marigold: #ce9e62;
-  --color-sage: #4b6777; /* steel cool accent */
-  --color-rose: #c1432e;
-  --color-cyan: #c1432e;
-  --color-magenta: #ce9e62;
+  --color-clay: #c1543a; /* terracotta secondary */
+  --color-clay-deep: #a8462e;
+  --color-amber: #d9a441; /* gold primary */
+  --color-gold: #d9a441;
+  --color-marigold: #e6b85c;
+  --color-sage: #5d6f74; /* slate-steel tertiary */
+  --color-rose: #c1543a;
+  --color-cyan: #d9a441;
+  --color-magenta: #c1543a;
 
-  --sidebar: #2c2c2c;
-  --sidebar-foreground: #d8d0c7;
-  --sidebar-primary: #c1432e;
-  --sidebar-primary-foreground: #fbf4ee;
-  --sidebar-accent: #34302e;
-  --sidebar-accent-foreground: #ece6df;
-  --sidebar-border: rgba(236, 230, 223, 0.12);
-  --sidebar-ring: #c1432e;
+  --sidebar: #161518;
+  --sidebar-foreground: #d8d2c8;
+  --sidebar-primary: #d9a441;
+  --sidebar-primary-foreground: #161310;
+  --sidebar-accent: #201d1a;
+  --sidebar-accent-foreground: #ece8e1;
+  --sidebar-border: rgba(236, 232, 225, 0.1);
+  --sidebar-ring: #d9a441;
   --shadow-1: 0 1px 2px -1px rgba(0, 0, 0, 0.6);
   --shadow-2:
     0 1px 2px -1px rgba(0, 0, 0, 0.5),
@@ -255,10 +255,10 @@
   }
   .dark body {
     background-image:
-      radial-gradient(52rem 52rem at 108% -10%, rgba(193, 67, 46, 0.14), transparent 60%),
-      radial-gradient(46rem 46rem at -10% 0%, rgba(206, 158, 98, 0.10), transparent 56%),
-      radial-gradient(50rem 50rem at 50% 120%, rgba(75, 103, 119, 0.10), transparent 60%),
-      linear-gradient(180deg, #232323 0%, #1d1d1d 100%);
+      radial-gradient(54rem 54rem at 108% -12%, rgba(217, 164, 65, 0.13), transparent 60%),
+      radial-gradient(46rem 46rem at -10% 2%, rgba(193, 84, 58, 0.10), transparent 56%),
+      radial-gradient(52rem 52rem at 50% 122%, rgba(93, 111, 116, 0.10), transparent 60%),
+      linear-gradient(180deg, #0b0b0d 0%, #060607 100%);
   }
   ::selection {
     background: color-mix(in oklab, var(--color-clay) 30%, transparent);
@@ -301,7 +301,7 @@
   }
   .dark .text-gradient {
     background-image: linear-gradient(
-      108deg, #ece6df 0%, #ce9e62 50%, #c1432e 100%
+      108deg, #ece8e1 0%, #e6b85c 48%, #d9a441 100%
     );
   }
   /* Glassy paper surface for cards/panels */
@@ -385,9 +385,9 @@
   .dark .spotlight {
     background: radial-gradient(
       42% 52% at 50% 0%,
-      rgba(193, 67, 46, 0.26) 0%,
-      rgba(206, 158, 98, 0.10) 40%,
-      rgba(75, 103, 119, 0.06) 60%,
+      rgba(217, 164, 65, 0.24) 0%,
+      rgba(193, 84, 58, 0.10) 42%,
+      rgba(93, 111, 116, 0.06) 60%,
       transparent 78%
     );
   }

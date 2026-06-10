@@ -38,7 +38,7 @@ export function HeroBackdrop() {
 
       {/* Readability scrim — keeps hero text AA over the animated canvas. */}
       <div className="absolute inset-0 bg-[radial-gradient(75%_60%_at_30%_42%,rgba(12,10,6,0.30),rgba(12,10,6,0.72))]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0c0a06] via-[#0c0a06]/45 to-[#0c0a06]/25" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b0d] via-[#0b0b0d]/45 to-[#0b0b0d]/25" />
       {/* soft bottom edge so it blends into the page below */}
       <ProgressiveBlur
         direction="bottom"

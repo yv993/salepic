@@ -49,14 +49,14 @@ export function CustomCursor() {
       {/* ring */}
       <motion.div
         style={{ x: rx, y: ry }}
-        className="absolute -ml-4 -mt-4 size-8 rounded-full border border-[#7d96a3] mix-blend-difference"
+        className="absolute -ml-4 -mt-4 size-8 rounded-full border border-[#8a9ba1] mix-blend-difference"
         animate={{ scale: hovering ? 1.9 : 1, opacity: hovering ? 0.9 : 0.6 }}
         transition={{ type: "spring", stiffness: 260, damping: 20 }}
       />
       {/* dot */}
       <motion.div
         style={{ x, y }}
-        className="absolute -ml-[3px] -mt-[3px] size-1.5 rounded-full bg-[#c1432e]"
+        className="absolute -ml-[3px] -mt-[3px] size-1.5 rounded-full bg-[#d9a441]"
         animate={{ scale: hovering ? 0.5 : 1 }}
         transition={{ type: "spring", stiffness: 320, damping: 22 }}
       />

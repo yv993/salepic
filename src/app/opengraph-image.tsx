@@ -16,8 +16,8 @@ export default function OpengraphImage() {
           justifyContent: "center",
           padding: "80px",
           background:
-            "radial-gradient(60% 80% at 80% 10%, rgba(224,145,58,0.22), transparent 60%), #14100b",
-          color: "#f3e9d8",
+            "radial-gradient(60% 80% at 80% 10%, rgba(217, 164, 65,0.22), transparent 60%), #0b0b0d",
+          color: "#ece8e1",
           fontFamily: "Georgia, serif",
         }}
       >
@@ -26,7 +26,7 @@ export default function OpengraphImage() {
             display: "flex",
             alignItems: "center",
             gap: 18,
-            color: "#e0913a",
+            color: "#d9a441",
             fontSize: 30,
             letterSpacing: 6,
             textTransform: "uppercase",
@@ -40,7 +40,7 @@ export default function OpengraphImage() {
               alignItems: "center",
               justifyContent: "center",
               borderRadius: 10,
-              border: "3px dashed #e0913a",
+              border: "3px dashed #d9a441",
               fontSize: 28,
               fontWeight: 700,
             }}
@@ -52,7 +52,7 @@ export default function OpengraphImage() {
         <div style={{ marginTop: 28, fontSize: 86, fontWeight: 700, lineHeight: 1.05 }}>
           Little postcards,
         </div>
-        <div style={{ fontSize: 86, fontWeight: 700, fontStyle: "italic", color: "#e0913a", lineHeight: 1.05 }}>
+        <div style={{ fontSize: 86, fontWeight: 700, fontStyle: "italic", color: "#d9a441", lineHeight: 1.05 }}>
           big somewhere-elses.
         </div>
         <div style={{ marginTop: 30, fontSize: 32, color: "#b8a88f", fontFamily: "Helvetica, Arial, sans-serif" }}>

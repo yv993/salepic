@@ -39,11 +39,11 @@ export function EditorialHero({ items }: { items: HeroItem[] }) {
   const go = (dir: number) => setI((p) => (p + dir + list.length) % list.length);
 
   return (
-    <section className="relative isolate overflow-hidden bg-[#0c0a06] text-[#f3e9d8]">
+    <section className="relative isolate overflow-hidden bg-[#0b0b0d] text-[#ece8e1]">
       {/* Animated WebGL shader backdrop (dark only, lazy three.js) + scrim */}
       <HeroBackdrop />
       {/* warm amber stage glow */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_55%_at_70%_18%,rgba(224,145,58,0.20),transparent_62%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_55%_at_70%_18%,rgba(217, 164, 65,0.20),transparent_62%)]" />
       <div className="bg-grid pointer-events-none absolute inset-0 -z-10 opacity-[0.12]" />
 
       {/* giant watermark word behind */}
@@ -123,7 +123,7 @@ export function EditorialHero({ items }: { items: HeroItem[] }) {
             </AnimatePresence>
 
             {/* caption chip */}
-            <div className="absolute -bottom-5 left-4 z-20 rounded-full bg-[#0c0a06]/90 px-4 py-2 text-sm shadow-3 ring-1 ring-white/10 backdrop-blur">
+            <div className="absolute -bottom-5 left-4 z-20 rounded-full bg-[#0b0b0d]/90 px-4 py-2 text-sm shadow-3 ring-1 ring-white/10 backdrop-blur">
               <span className="font-heading font-semibold">{item.title}</span>
               <span className="ml-2 text-primary">
                 {formatPrice(item.priceCents, item.currency)}
