@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1410 1000" width="1410" height="1000" role="img">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dfe7c8"/><stop offset="1" stop-color="#c2d3a0"/></linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+    <radialGradient id="vig" cx="50%" cy="42%" r="75%"><stop offset="60%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity="0.16"/></radialGradient>
+  </defs>
+  <rect width="1410" height="1000" fill="#eee7d3"/>
+  <rect width="1410" height="1000" fill="url(#sky)"/><circle cx="602" cy="181" r="100" fill="#e6c453" opacity="0.92"/><path d="M -20 1000 L -20 429 L -20 428.2 L 221.7 464.7 L 463.3 453 L 705 428.8 L 946.7 462.8 L 1188.3 390.7 L 1430 355.2 L 1430 1000 Z" fill="#7f9a6a"/><path d="M -20 1000 L -20 558 L -20 458.9 L 221.7 451.9 L 463.3 427.4 L 705 588.2 L 946.7 566.3 L 1188.3 438.5 L 1430 474.8 L 1430 1000 Z" fill="#52704a"/><path d="M -20 1000 L -20 744 L -20 756.3 L 221.7 775.6 L 463.3 673.6 L 705 688.7 L 946.7 679 L 1188.3 782 L 1430 675.5 L 1430 1000 Z" fill="#33472f"/><g fill="#33472f"><ellipse cx="798" cy="760" rx="164" ry="120"/><circle cx="912.8" cy="676" r="84"/><path d="M 892.8 616 l 24 -60 l 24 56 z"/><path d="M 942.8 610 l 24 -60 l 22 60 z"/><path d="M 634 760 q -120 -20 -150 -120 q 70 40 150 60 z"/></g>
+  <rect width="1410" height="1000" fill="url(#vig)"/>
+  <rect width="1410" height="1000" filter="url(#grain)" opacity="0.06"/>
+  <rect x="28" y="28" width="1354" height="944" fill="none" stroke="#33472f" stroke-width="3" opacity="0.4"/>
+  <g transform="translate(1260 868)" opacity="0.8">
+    <rect width="96" height="104" rx="6" fill="none" stroke="#33472f" stroke-width="3" stroke-dasharray="2 9"/>
+    <text x="48" y="56" text-anchor="middle" font-family="Georgia, serif" font-size="46" font-weight="700" fill="#33472f">P</text>
+    <text x="48" y="84" text-anchor="middle" font-family="Georgia, serif" font-size="13" letter-spacing="2" fill="#33472f">POSTED</text>
+  </g>
+</svg>

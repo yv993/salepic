@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1410 1000" width="1410" height="1000" role="img">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1e8d2"/><stop offset="1" stop-color="#f1e8d2"/></linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+    <radialGradient id="vig" cx="50%" cy="42%" r="75%"><stop offset="60%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity="0.16"/></radialGradient>
+  </defs>
+  <rect width="1410" height="1000" fill="#f1e8d2"/>
+  <rect width="1410" height="1000" fill="#f1e8d2"/><circle cx="697" cy="240" r="314" fill="#d98a3a" opacity="0.16"/><text x="705" y="670" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="560" fill="#5c7b46">A</text><text x="705" y="850" text-anchor="middle" font-family="Georgia, serif" font-size="78" letter-spacing="10" fill="#a8462e">ADVENTURE</text><rect x="615" y="890" width="180" height="6" fill="#d98a3a"/>
+  <rect width="1410" height="1000" fill="url(#vig)"/>
+  <rect width="1410" height="1000" filter="url(#grain)" opacity="0.06"/>
+  <rect x="28" y="28" width="1354" height="944" fill="none" stroke="#3a512f" stroke-width="3" opacity="0.4"/>
+  <g transform="translate(1260 868)" opacity="0.8">
+    <rect width="96" height="104" rx="6" fill="none" stroke="#3a512f" stroke-width="3" stroke-dasharray="2 9"/>
+    <text x="48" y="56" text-anchor="middle" font-family="Georgia, serif" font-size="46" font-weight="700" fill="#3a512f">P</text>
+    <text x="48" y="84" text-anchor="middle" font-family="Georgia, serif" font-size="13" letter-spacing="2" fill="#3a512f">POSTED</text>
+  </g>
+</svg>

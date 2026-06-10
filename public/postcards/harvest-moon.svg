@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1410 1000" width="1410" height="1000" role="img">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4d8b6"/><stop offset="1" stop-color="#e7b489"/></linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+    <radialGradient id="vig" cx="50%" cy="42%" r="75%"><stop offset="60%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity="0.16"/></radialGradient>
+  </defs>
+  <rect width="1410" height="1000" fill="#f1e8d8"/>
+  <rect width="1410" height="1000" fill="url(#sky)"/><circle cx="548" cy="268" r="118" fill="#dd7a3a" opacity="0.92"/><path d="M -20 1000 L -20 458 L -20 397.1 L 221.7 370.4 L 463.3 383.9 L 705 422.3 L 946.7 373.9 L 1188.3 468.7 L 1430 473.2 L 1430 1000 Z" fill="#b9743f"/><path d="M -20 1000 L -20 597 L -20 502.8 L 221.7 527.6 L 463.3 516.6 L 705 621.4 L 946.7 618.6 L 1188.3 532.5 L 1430 544.1 L 1430 1000 Z" fill="#8a4a33"/><path d="M -20 1000 L -20 752 L -20 647.9 L 221.7 698 L 463.3 701.5 L 705 711.9 L 946.7 820.6 L 1188.3 822.9 L 1430 782.8 L 1430 1000 Z" fill="#4a2f2a"/><g fill="#ffffff" opacity="0.75"><circle cx="894" cy="171" r="3"/><circle cx="713" cy="620" r="6"/><circle cx="1324" cy="147" r="9"/><circle cx="1194" cy="286" r="9"/><circle cx="929" cy="331" r="4"/><circle cx="237" cy="36" r="5"/><circle cx="1163" cy="436" r="8"/><circle cx="1314" cy="225" r="4"/><circle cx="1372" cy="523" r="8"/><circle cx="569" cy="431" r="6"/><circle cx="661" cy="573" r="6"/><circle cx="85" cy="546" r="3"/><circle cx="465" cy="318" r="8"/><circle cx="794" cy="322" r="9"/><circle cx="446" cy="69" r="4"/><circle cx="703" cy="433" r="8"/><circle cx="646" cy="278" r="3"/><circle cx="331" cy="199" r="9"/><circle cx="100" cy="271" r="9"/><circle cx="466" cy="384" r="7"/><circle cx="945" cy="290" r="8"/><circle cx="394" cy="383" r="8"/><circle cx="655" cy="113" r="7"/><circle cx="434" cy="365" r="9"/><circle cx="1303" cy="332" r="3"/><circle cx="1317" cy="172" r="9"/><circle cx="652" cy="453" r="4"/><circle cx="808" cy="433" r="9"/></g>
+  <rect width="1410" height="1000" fill="url(#vig)"/>
+  <rect width="1410" height="1000" filter="url(#grain)" opacity="0.06"/>
+  <rect x="28" y="28" width="1354" height="944" fill="none" stroke="#4a2f2a" stroke-width="3" opacity="0.4"/>
+  <g transform="translate(1260 868)" opacity="0.8">
+    <rect width="96" height="104" rx="6" fill="none" stroke="#4a2f2a" stroke-width="3" stroke-dasharray="2 9"/>
+    <text x="48" y="56" text-anchor="middle" font-family="Georgia, serif" font-size="46" font-weight="700" fill="#4a2f2a">P</text>
+    <text x="48" y="84" text-anchor="middle" font-family="Georgia, serif" font-size="13" letter-spacing="2" fill="#4a2f2a">POSTED</text>
+  </g>
+</svg>

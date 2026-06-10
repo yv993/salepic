@@ -78,7 +78,7 @@ export function ProductForm({ action, product, submitLabel }: Props) {
             name="imageUrl"
             required
             defaultValue={p?.imageUrl}
-            placeholder="/postcards/kyoto-at-dusk.jpg"
+            placeholder="/postcards/kyoto-at-dusk.svg"
             error={state.fieldErrors?.imageUrl}
           />
           <div className="space-y-1.5">

@@ -30,9 +30,9 @@ const mono = JetBrains_Mono({
   display: "swap",
 });
 
-const SITE = "Posted. — Original postcard art";
+const SITE = "Posted. — Original postcard art by Tatevik Papyan";
 const DESCRIPTION =
-  "Hand-illustrated postcards by an independent artist. Browse limited prints by destination, season, and mood — printed on A6 card stock and ready to mail.";
+  "Hand-illustrated postcards by Tatevik Papyan. Browse limited prints by destination, season, and mood — printed on A6 card stock and ready to mail.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://posted.example"),

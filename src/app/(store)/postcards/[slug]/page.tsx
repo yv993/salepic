@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, Truck, Stamp, Package } from "lucide-react";
 import { getProductBySlug } from "@/features/products/queries";
 import { CATEGORY_META } from "@/features/products/constants";
+import { ARTIST_BYLINE } from "@/lib/artist";
 import { formatPrice, formatDimensions } from "@/lib/format";
 import { ProductGallery } from "@/components/store/product-gallery";
 import { BuyBox } from "@/components/store/buy-box";
@@ -78,6 +79,10 @@ async function ProductDetail({ params }: { params: Params }) {
           <h1 className="mt-4 font-heading text-4xl font-bold tracking-tight sm:text-5xl">
             {product.title}
           </h1>
+
+          <p className="mt-2 text-sm text-muted-foreground">
+            {ARTIST_BYLINE}
+          </p>
 
           <p className="mt-4 font-heading text-3xl font-semibold text-primary">
             {formatPrice(product.priceCents, product.currency)}

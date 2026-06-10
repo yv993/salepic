@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1410 1000" width="1410" height="1000" role="img">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1d9b4"/><stop offset="1" stop-color="#dcbf8e"/></linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+    <radialGradient id="vig" cx="50%" cy="42%" r="75%"><stop offset="60%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity="0.16"/></radialGradient>
+  </defs>
+  <rect width="1410" height="1000" fill="#f0e8d6"/>
+  <rect width="1410" height="1000" fill="url(#sky)"/><circle cx="409" cy="358" r="129" fill="#d98a3a" opacity="0.92"/><path d="M -20 1000 L -20 437 L -20 427.1 L 221.7 435.5 L 463.3 485.9 L 705 312.6 L 946.7 431.2 L 1188.3 299.5 L 1430 473.4 L 1430 1000 Z" fill="#9c8a52"/><path d="M -20 1000 L -20 586 L -20 498 L 221.7 543.7 L 463.3 613.9 L 705 606.3 L 946.7 502.2 L 1188.3 506.2 L 1430 507.2 L 1430 1000 Z" fill="#6c6638"/><path d="M -20 1000 L -20 718 L -20 739.4 L 221.7 738.3 L 463.3 645.7 L 705 765.7 L 946.7 647.4 L 1188.3 767.5 L 1430 747.5 L 1430 1000 Z" fill="#403d22"/>
+  <rect width="1410" height="1000" fill="url(#vig)"/>
+  <rect width="1410" height="1000" filter="url(#grain)" opacity="0.06"/>
+  <rect x="28" y="28" width="1354" height="944" fill="none" stroke="#403d22" stroke-width="3" opacity="0.4"/>
+  <g transform="translate(1260 868)" opacity="0.8">
+    <rect width="96" height="104" rx="6" fill="none" stroke="#403d22" stroke-width="3" stroke-dasharray="2 9"/>
+    <text x="48" y="56" text-anchor="middle" font-family="Georgia, serif" font-size="46" font-weight="700" fill="#403d22">P</text>
+    <text x="48" y="84" text-anchor="middle" font-family="Georgia, serif" font-size="13" letter-spacing="2" fill="#403d22">POSTED</text>
+  </g>
+</svg>

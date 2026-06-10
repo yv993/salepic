@@ -9,7 +9,7 @@ import { PostcardCard } from "./postcard-card";
  * prerenders into the static shell — no <Suspense> needed.
  */
 export async function FeaturedRow() {
-  const products = await getFeaturedProducts(3);
+  const products = await getFeaturedProducts(12);
   if (products.length === 0) return null;
 
   return (

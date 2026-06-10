@@ -2,7 +2,7 @@ import { PackageOpen } from "lucide-react";
 import { getStoreProducts } from "@/features/products/queries";
 import type { ProductCategory } from "@/db/schema";
 import type { ProductSort } from "@/features/products/constants";
-import { PostcardCard } from "./postcard-card";
+import { PaginatedGrid } from "./paginated-grid";
 
 /**
  * Cached product grid. Receives plain string args (read from searchParams in
@@ -33,11 +33,5 @@ export async function ProductGrid({
     );
   }
 
-  return (
-    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {products.map((product, i) => (
-        <PostcardCard key={product.id} product={product} priority={i < 3} />
-      ))}
-    </div>
-  );
+  return <PaginatedGrid products={products} />;
 }

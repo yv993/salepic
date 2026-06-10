@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1410 1000" width="1410" height="1000" role="img">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ddc9a2"/><stop offset="1" stop-color="#c2a877"/></linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+    <radialGradient id="vig" cx="50%" cy="42%" r="75%"><stop offset="60%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity="0.16"/></radialGradient>
+  </defs>
+  <rect width="1410" height="1000" fill="#e7d8bd"/>
+  <rect width="1410" height="1000" fill="#e7d8bd"/><g opacity="0.9"><rect x="120" y="120" width="1170" height="760" fill="url(#sky)"/><circle cx="721" cy="317" r="72" fill="#a8633a"/><path d="M 120 880 L 120 620 L 470 480 L 820 600 L 1120 460 L 1290 580 L 1290 880 Z" fill="#6f3f2a"/></g><rect x="60" y="60" width="1290" height="880" fill="none" stroke="#3d251a" stroke-width="6" stroke-dasharray="2 26" stroke-linecap="round" opacity="0.8"/><g fill="none" stroke="#3d251a" stroke-width="6" opacity="0.5"><circle cx="1136" cy="260" r="92"/><circle cx="1136" cy="260" r="70"/><line x1="1206" y1="260" x2="1228" y2="260"/><line x1="1196.6" y1="295" x2="1215.7" y2="306"/><line x1="1171" y1="320.6" x2="1182" y2="339.7"/><line x1="1136" y1="330" x2="1136" y2="352"/><line x1="1101" y1="320.6" x2="1090" y2="339.7"/><line x1="1075.4" y1="295" x2="1056.3" y2="306"/><line x1="1066" y1="260" x2="1044" y2="260"/><line x1="1075.4" y1="225" x2="1056.3" y2="214"/><line x1="1101" y1="199.4" x2="1090" y2="180.3"/><line x1="1136" y1="190" x2="1136" y2="168"/><line x1="1171" y1="199.4" x2="1182" y2="180.3"/><line x1="1196.6" y1="225" x2="1215.7" y2="214"/></g><text x="705" y="850" text-anchor="middle" font-family="Georgia, serif" font-size="46" letter-spacing="14" fill="#3d251a" opacity="0.8">POST CARD</text>
+  <rect width="1410" height="1000" fill="url(#vig)"/>
+  <rect width="1410" height="1000" filter="url(#grain)" opacity="0.06"/>
+  <rect x="28" y="28" width="1354" height="944" fill="none" stroke="#3d251a" stroke-width="3" opacity="0.4"/>
+  <g transform="translate(1260 868)" opacity="0.8">
+    <rect width="96" height="104" rx="6" fill="none" stroke="#3d251a" stroke-width="3" stroke-dasharray="2 9"/>
+    <text x="48" y="56" text-anchor="middle" font-family="Georgia, serif" font-size="46" font-weight="700" fill="#3d251a">P</text>
+    <text x="48" y="84" text-anchor="middle" font-family="Georgia, serif" font-size="13" letter-spacing="2" fill="#3d251a">POSTED</text>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1410 1000" width="1410" height="1000" role="img">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#efe7d6"/><stop offset="1" stop-color="#efe7d6"/></linearGradient>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+    <radialGradient id="vig" cx="50%" cy="42%" r="75%"><stop offset="60%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity="0.16"/></radialGradient>
+  </defs>
+  <rect width="1410" height="1000" fill="#efe7d6"/>
+  <rect width="1410" height="1000" fill="#efe7d6"/><circle cx="930" cy="455" r="420" fill="#d9a441" opacity="0.12"/><path d="M 257 159.5 L 417.5 480.5 L 96.5 480.5 Z" fill="#c1543a" opacity="0.78" transform="rotate(6 257 320)" style="mix-blend-mode:multiply"/><circle cx="842" cy="475" r="128" fill="#4d6b78" opacity="0.62" style="mix-blend-mode:multiply"/><circle cx="888" cy="393" r="138" fill="#d9a441" opacity="0.71" style="mix-blend-mode:multiply"/><circle cx="825" cy="588" r="121" fill="#c1543a" opacity="0.69" style="mix-blend-mode:multiply"/><rect x="323" y="562" width="276" height="331.3060727035627" fill="#4d6b78" opacity="0.64" transform="rotate(-2 461 700)" style="mix-blend-mode:multiply"/><rect x="213.5" y="142.5" width="191" height="103.75320441741496" fill="#d9a441" opacity="0.73" transform="rotate(5 309 238)" style="mix-blend-mode:multiply"/><circle cx="500" cy="742" r="120" fill="#c1543a" opacity="0.61" style="mix-blend-mode:multiply"/>
+  <rect width="1410" height="1000" fill="url(#vig)"/>
+  <rect width="1410" height="1000" filter="url(#grain)" opacity="0.06"/>
+  <rect x="28" y="28" width="1354" height="944" fill="none" stroke="#d9a441" stroke-width="3" opacity="0.4"/>
+  <g transform="translate(1260 868)" opacity="0.8">
+    <rect width="96" height="104" rx="6" fill="none" stroke="#d9a441" stroke-width="3" stroke-dasharray="2 9"/>
+    <text x="48" y="56" text-anchor="middle" font-family="Georgia, serif" font-size="46" font-weight="700" fill="#d9a441">P</text>
+    <text x="48" y="84" text-anchor="middle" font-family="Georgia, serif" font-size="13" letter-spacing="2" fill="#d9a441">POSTED</text>
+  </g>
+</svg>

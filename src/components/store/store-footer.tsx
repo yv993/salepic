@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Camera, Send, Video, Mail } from "lucide-react";
 import { Brand } from "@/components/brand";
 import { CATEGORY_ORDER, CATEGORY_META } from "@/features/products/constants";
+import { ARTIST } from "@/lib/artist";
 
 const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] = [
   {
@@ -55,8 +56,8 @@ export function StoreFooter() {
         <div className="flex flex-col items-center gap-3 text-center">
           <Brand href="/" />
           <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
-            Original postcard art, drawn by hand and printed small-batch on A6
-            card stock — sent with care from the studio to your letterbox.
+            Original postcard art by {ARTIST}, drawn by hand and printed
+            small-batch on A6 card stock — sent with care to your letterbox.
           </p>
           <div className="mt-2 flex gap-2">
             {SOCIAL.map((s) => {
@@ -98,8 +99,8 @@ export function StoreFooter() {
 
       <div className="border-t border-border/60">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-muted-foreground sm:flex-row sm:px-6">
-          <p>© Posted. All artwork © the artist.</p>
-          <p className="stamp-label">Made with care · Shipped worldwide</p>
+          <p>© Posted. All artwork © {ARTIST}.</p>
+          <p className="stamp-label">Original art by {ARTIST} · Shipped worldwide</p>
         </div>
       </div>
     </footer>
