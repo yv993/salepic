@@ -3,12 +3,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { CheckCircle2, Clock, ExternalLink, Package } from "lucide-react";
+import { CheckCircle2, Clock, ExternalLink, Package, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatPrice } from "@/lib/format";
 import { getOrderByNumber } from "@/features/orders/queries";
 import { ORDER_STATUS_META } from "@/features/orders/constants";
+import { getReviewAccess } from "@/features/reviews/access";
+import { OrderReviewItem } from "@/components/store/order-review-item";
 
 export const metadata: Metadata = {
   title: "Order confirmation",
@@ -32,6 +34,13 @@ async function Confirmation({ params }: { params: Params }) {
 
   const status = ORDER_STATUS_META[order.status];
   const pending = order.status === "pending_payment";
+
+  // Per-item review access (reads Clerk auth — fine here, this page is dynamic
+  // under <Suspense>). Only items still linked to a product are reviewable.
+  const reviewable = order.items.filter((i) => i.productId);
+  const reviewAccess = await Promise.all(
+    reviewable.map((i) => getReviewAccess(i.productId as string)),
+  );
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-14 sm:px-6">
@@ -173,6 +182,44 @@ async function Confirmation({ params }: { params: Params }) {
           {order.shippingCountry}
         </address>
       </div>
+
+      {/* Leave a review (per purchased postcard) */}
+      {reviewable.length > 0 && (
+        <div className="surface mt-6 rounded-2xl p-6">
+          <h2 className="flex items-center gap-2 font-heading text-lg font-semibold">
+            <Star className="size-5 text-primary" />
+            Share your thoughts
+          </h2>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Bought and loved them? Verified buyers can review each postcard.
+          </p>
+          <ul className="mt-4 divide-y divide-border/70">
+            {reviewable.map((item, idx) => (
+              <li key={item.id} className="flex items-center gap-3 py-3">
+                {item.imageUrlSnapshot && (
+                  <div className="relative aspect-[1.41/1] w-16 shrink-0 overflow-hidden rounded-md bg-muted">
+                    <Image
+                      src={item.imageUrlSnapshot}
+                      alt={item.titleSnapshot}
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+                <p className="min-w-0 flex-1 truncate text-sm font-medium">
+                  {item.titleSnapshot}
+                </p>
+                <OrderReviewItem
+                  productId={item.productId as string}
+                  productTitle={item.titleSnapshot}
+                  access={reviewAccess[idx]}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className="mt-8 text-center">
         <Button variant="outline" render={<Link href="/postcards" />}>

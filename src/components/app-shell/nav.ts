@@ -2,6 +2,7 @@ import {
   LayoutDashboard,
   Image as ImageIcon,
   Receipt,
+  Star,
   Store,
   type LucideIcon,
 } from "lucide-react";
@@ -18,6 +19,7 @@ export const NAV_ITEMS: NavItem[] = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/admin/products", label: "Postcards", icon: ImageIcon },
   { href: "/admin/orders", label: "Orders", icon: Receipt },
+  { href: "/admin/reviews", label: "Reviews", icon: Star },
 ];
 
 /** Shown separately at the foot of the nav. */

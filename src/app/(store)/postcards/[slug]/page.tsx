@@ -9,6 +9,7 @@ import { ARTIST_BYLINE } from "@/lib/artist";
 import { formatPrice, formatDimensions } from "@/lib/format";
 import { ProductGallery } from "@/components/store/product-gallery";
 import { BuyBox } from "@/components/store/buy-box";
+import { ProductReviews } from "@/components/store/product-reviews";
 import { Skeleton } from "@/components/ui/skeleton";
 
 type Params = Promise<{ slug: string }>;
@@ -109,6 +110,8 @@ async function ProductDetail({ params }: { params: Params }) {
           </dl>
         </div>
       </div>
+
+      <ProductReviews productId={product.id} productTitle={product.title} />
     </div>
   );
 }

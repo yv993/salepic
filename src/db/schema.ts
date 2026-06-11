@@ -45,6 +45,13 @@ export const paymentProvider = pgEnum("payment_provider", [
   "payoneer",
 ]);
 
+/** Moderation lifecycle for a buyer review. */
+export const reviewStatus = pgEnum("review_status", [
+  "pending",
+  "published",
+  "hidden",
+]);
+
 /* --------------------------------------------------------------- tables */
 
 /** A postcard artwork available in the store. Money is always integer cents. */
@@ -157,10 +164,47 @@ export const orderItems = pgTable(
   (t) => [index("order_items_order_idx").on(t.orderId)],
 );
 
+/**
+ * A buyer review of a postcard. Tied to the Clerk user; `verified` means we
+ * confirmed (at submit time) that this user's email had a paid/fulfilled order
+ * containing this product. `orderId` records which order proved it.
+ */
+export const reviews = pgTable(
+  "reviews",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    productId: uuid("product_id")
+      .notNull()
+      .references(() => products.id, { onDelete: "cascade" }),
+    /** The order that proved the purchase (kept for audit; nulled if removed). */
+    orderId: uuid("order_id").references(() => orders.id, {
+      onDelete: "set null",
+    }),
+    /** Clerk user id of the author. */
+    userId: text("user_id").notNull(),
+    authorName: text("author_name").notNull(),
+    authorLocation: text("author_location"),
+    rating: integer("rating").notNull(),
+    title: text("title"),
+    body: text("body").notNull(),
+    verified: boolean("verified").notNull().default(false),
+    status: reviewStatus("status").notNull().default("published"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (t) => [
+    index("reviews_product_idx").on(t.productId),
+    index("reviews_status_idx").on(t.status),
+    index("reviews_created_at_idx").on(t.createdAt),
+  ],
+);
+
 /* ------------------------------------------------------------ relations */
 
 export const ordersRelations = relations(orders, ({ many }) => ({
   items: many(orderItems),
+  reviews: many(reviews),
 }));
 
 export const orderItemsRelations = relations(orderItems, ({ one }) => ({
@@ -176,6 +220,18 @@ export const orderItemsRelations = relations(orderItems, ({ one }) => ({
 
 export const productsRelations = relations(products, ({ many }) => ({
   orderItems: many(orderItems),
+  reviews: many(reviews),
+}));
+
+export const reviewsRelations = relations(reviews, ({ one }) => ({
+  product: one(products, {
+    fields: [reviews.productId],
+    references: [products.id],
+  }),
+  order: one(orders, {
+    fields: [reviews.orderId],
+    references: [orders.id],
+  }),
 }));
 
 /* ---------------------------------------------------------------- types */
@@ -186,8 +242,11 @@ export type Order = typeof orders.$inferSelect;
 export type NewOrder = typeof orders.$inferInsert;
 export type OrderItem = typeof orderItems.$inferSelect;
 export type NewOrderItem = typeof orderItems.$inferInsert;
+export type Review = typeof reviews.$inferSelect;
+export type NewReview = typeof reviews.$inferInsert;
 
 export type ProductCategory = (typeof productCategory.enumValues)[number];
 export type ProductStatus = (typeof productStatus.enumValues)[number];
+export type ReviewStatus = (typeof reviewStatus.enumValues)[number];
 export type OrderStatus = (typeof orderStatus.enumValues)[number];
 export type PaymentProviderId = (typeof paymentProvider.enumValues)[number];

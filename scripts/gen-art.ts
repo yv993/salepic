@@ -204,7 +204,7 @@ function creature(r: R, p: Pal) {
   return s;
 }
 
-function vintageCard(r: R, p: Pal, title: string) {
+function vintageCard(r: R, p: Pal) {
   let s = `<rect width="${W}" height="${H}" fill="${p.paper}"/>`;
   // mini scene inside
   s += `<g opacity="0.9">`;
@@ -244,7 +244,7 @@ function render(category: ProductCategory, slug: string, title: string) {
       scene = typographyCard(r, p, title);
       break;
     case "vintage":
-      scene = vintageCard(r, p, title);
+      scene = vintageCard(r, p);
       break;
     case "animals":
       scene = landscape(r, p, false) + creature(r, p);
