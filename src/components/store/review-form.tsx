@@ -115,6 +115,11 @@ export function ReviewForm({
 
       <input type="hidden" name="productId" value={productId} />
       <input type="hidden" name="rating" value={rating} />
+      {/* Honeypot — hidden from humans; bots that fill it are dropped. */}
+      <div aria-hidden className="sr-only">
+        <label htmlFor={`${titleId}-company`}>Company</label>
+        <input id={`${titleId}-company`} name="company" tabIndex={-1} autoComplete="off" />
+      </div>
 
       <div className="space-y-1.5">
         <Label>Your rating</Label>

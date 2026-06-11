@@ -26,9 +26,10 @@ const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] =
   {
     heading: "Help",
     links: [
+      { label: "Track an order", href: "/orders/lookup" },
+      { label: "Shipping", href: "/legal/shipping" },
+      { label: "Refunds & returns", href: "/legal/refunds" },
       { label: "Your cart", href: "/cart" },
-      { label: "Checkout", href: "/checkout" },
-      { label: "Shipping & returns", href: "/about" },
     ],
   },
   {
@@ -98,9 +99,15 @@ export function StoreFooter() {
       </div>
 
       <div className="border-t border-border/60">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-muted-foreground sm:flex-row sm:px-6">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-4 py-5 text-xs text-muted-foreground sm:flex-row sm:px-6">
           <p>© Posted. All artwork © {ARTIST}.</p>
-          <p className="stamp-label">Original art by {ARTIST} · Shipped worldwide</p>
+          <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+            <Link href="/legal/privacy" className="hover:text-foreground">Privacy</Link>
+            <Link href="/legal/terms" className="hover:text-foreground">Terms</Link>
+            <Link href="/legal/cookies" className="hover:text-foreground">Cookies</Link>
+            <Link href="/legal/refunds" className="hover:text-foreground">Refunds</Link>
+            <Link href="/legal/shipping" className="hover:text-foreground">Shipping</Link>
+          </nav>
         </div>
       </div>
     </footer>

@@ -39,7 +39,7 @@ async function AdminShell({ children }: { children: React.ReactNode }) {
       </aside>
       <div className="flex min-h-screen flex-col">
         <AppHeader />
-        <main className="flex-1 px-4 py-6 lg:px-8 lg:py-8">
+        <main id="main-content" className="flex-1 px-4 py-6 lg:px-8 lg:py-8">
           {ok ? children : <Forbidden clerkConfigured={clerkOn} />}
         </main>
       </div>
@@ -53,7 +53,7 @@ function ShellFallback() {
       <aside className="hidden border-r border-sidebar-border bg-sidebar lg:block" />
       <div className="flex min-h-screen flex-col">
         <div className="h-16 border-b border-border" />
-        <main className="flex-1 px-4 py-6 lg:px-8 lg:py-8">
+        <main id="main-content" className="flex-1 px-4 py-6 lg:px-8 lg:py-8">
           <Skeleton className="h-9 w-56" />
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {Array.from({ length: 4 }).map((_, i) => (

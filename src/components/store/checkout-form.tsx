@@ -26,6 +26,11 @@ export function CheckoutForm() {
 
   return (
     <form action={formAction} className="space-y-8">
+      {/* Honeypot — hidden from humans; bots that fill it are rejected. */}
+      <div aria-hidden className="sr-only">
+        <label htmlFor="company">Company</label>
+        <input id="company" name="company" tabIndex={-1} autoComplete="off" />
+      </div>
       <section className="space-y-5">
         <h2 className="font-heading text-lg font-semibold">Contact</h2>
         <div className="grid gap-5 sm:grid-cols-2">

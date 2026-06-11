@@ -7,6 +7,7 @@ import { getDb } from "@/db";
 import { reviews, type ReviewStatus } from "@/db/schema";
 import { requireUserId, requireAdmin } from "@/lib/auth";
 import { type ActionState, zodToFieldErrors } from "@/lib/action-state";
+import { rateLimit, isHoneypotTripped } from "@/lib/spam";
 import { hasPurchased } from "./access";
 
 const schema = z.object({
@@ -31,6 +32,9 @@ export async function createReview(
   _prev: ActionState,
   formData: FormData,
 ): Promise<ActionState> {
+  // Spam protection: honeypot.
+  if (isHoneypotTripped(formData)) return { error: "Please sign in to leave a review." };
+
   // --- auth (outside use cache) ---
   let userId: string;
   let email: string | undefined;
@@ -46,6 +50,9 @@ export async function createReview(
   }
   if (!email) {
     return { error: "Your account needs a verified email to review." };
+  }
+  if (!rateLimit(`review:${userId}`, 5, 60_000)) {
+    return { error: "Too many submissions — please wait a minute." };
   }
 
   // --- validate ---

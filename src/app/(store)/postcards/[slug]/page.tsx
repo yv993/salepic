@@ -30,6 +30,7 @@ export async function generateMetadata({
     description:
       product.description ??
       `${product.title} — an original hand-illustrated postcard.`,
+    alternates: { canonical: `${SITE_URL}/postcards/${product.slug}` },
     openGraph: {
       title: product.title,
       images: [{ url: product.imageUrl }],
@@ -80,11 +81,26 @@ async function ProductDetail({ params }: { params: Params }) {
     },
   };
 
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Postcards", item: `${SITE_URL}/postcards` },
+      { "@type": "ListItem", position: 3, name: cat.label, item: `${SITE_URL}/postcards?category=${product.category}` },
+      { "@type": "ListItem", position: 4, name: product.title, item: `${SITE_URL}/postcards/${product.slug}` },
+    ],
+  };
+
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
       <Link
         href="/postcards"

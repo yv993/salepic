@@ -1,13 +1,15 @@
 "use server";
 
 import { randomBytes } from "node:crypto";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { updateTag } from "next/cache";
 import { redirect } from "next/navigation";
 import { getDb } from "@/db";
-import { orders, orderItems } from "@/db/schema";
+import { orders, orderItems, products } from "@/db/schema";
 import { type ActionState, zodToFieldErrors } from "@/lib/action-state";
 import { getCart, writeCartCookie } from "@/features/cart/cart";
+import { rateLimit, isHoneypotTripped } from "@/lib/spam";
+import { sendOrderConfirmation } from "@/features/email/send";
 import { checkoutInput } from "./schemas";
 import { computeShippingCents } from "./constants";
 import { paymentProvider } from "./payment";
@@ -37,9 +39,18 @@ export async function placeOrder(
   _prev: ActionState,
   formData: FormData,
 ): Promise<ActionState> {
+  // Spam protection: drop bots that fill the hidden honeypot field.
+  if (isHoneypotTripped(formData)) {
+    return { error: "Something went wrong. Please try again." };
+  }
+
   const parsed = checkoutInput.safeParse(Object.fromEntries(formData));
   if (!parsed.success) return zodToFieldErrors(parsed.error);
   const v = parsed.data;
+
+  if (!rateLimit(`checkout:${v.buyerEmail.toLowerCase()}`, 5, 60_000)) {
+    return { error: "Too many checkout attempts — please wait a moment." };
+  }
 
   // Re-derive the cart (and prices) from the DB; drops inactive/out-of-stock.
   const cart = await getCart();
@@ -112,9 +123,35 @@ export async function placeOrder(
       .where(eq(orders.id, order.id));
   }
 
-  // Clear the cart (cookie) and invalidate cached order reads.
+  // Decrement stock for each purchased line (clamped at 0).
+  for (const line of cart.lines) {
+    await db
+      .update(products)
+      .set({
+        stock: sql`greatest(0, ${products.stock} - ${line.qty})`,
+        updatedAt: new Date(),
+      })
+      .where(eq(products.id, line.product.id));
+  }
+
+  // Order-confirmation email (no-op + logged when RESEND_API_KEY is unset).
+  await sendOrderConfirmation({
+    orderNumber,
+    buyerName: v.buyerName,
+    buyerEmail: v.buyerEmail,
+    totalCents,
+    currency,
+    items: cart.lines.map((l) => ({
+      title: l.product.title,
+      qty: l.qty,
+      lineTotalCents: l.lineTotalCents,
+    })),
+  });
+
+  // Clear the cart (cookie) and invalidate cached reads (orders + stock).
   await writeCartCookie([]);
   updateTag("orders");
+  updateTag("products");
 
   redirect(`/orders/${orderNumber}`);
 }

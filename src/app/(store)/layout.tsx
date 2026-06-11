@@ -31,7 +31,7 @@ export default function StoreLayout({
             </Suspense>
           }
         />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <PhotoCollage />
       </div>
       <RevealFooter>

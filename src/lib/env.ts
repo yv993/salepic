@@ -24,8 +24,26 @@ const serverEnvSchema = z.object({
   /** Which payment provider to use. "manual" is the only one wired today. */
   PAYMENT_PROVIDER: z.enum(["manual", "payoneer"]).optional().default("manual"),
   PAYONEER_API_KEY: z.string().optional(),
+  PAYONEER_API_BASE: z.string().optional(),
   PAYONEER_WEBHOOK_SECRET: z.string().optional(),
+
+  /** Transactional email (Resend). Unset → emails are logged + skipped. */
+  RESEND_API_KEY: z.string().optional(),
+  EMAIL_FROM: z.string().optional(),
+
+  /** Error monitoring (Sentry). Unset → no-op. */
+  SENTRY_DSN: z.string().optional(),
+
+  /** Canonical site origin for absolute URLs (SEO/OG). */
+  SITE_URL: z.string().optional(),
 });
+
+/** Canonical site origin (no trailing slash). Falls back to the demo origin. */
+export function siteUrl(): string {
+  const raw =
+    process.env.SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || "https://posted.example";
+  return raw.replace(/\/$/, "");
+}
 
 type ServerEnv = z.infer<typeof serverEnvSchema>;
 
