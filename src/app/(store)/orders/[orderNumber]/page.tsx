@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { CheckCircle2, Clock, ExternalLink, Package, Star } from "lucide-react";
+import { Clock, ExternalLink, Package, Star } from "lucide-react";
+import { ConfirmationSuccess } from "@/components/store/confirmation-success";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatPrice } from "@/lib/format";
@@ -45,9 +46,7 @@ async function Confirmation({ params }: { params: Params }) {
   return (
     <div className="mx-auto max-w-2xl px-4 py-14 sm:px-6">
       <div className="text-center">
-        <span className="mx-auto grid size-14 place-items-center rounded-full bg-success/15 text-success">
-          <CheckCircle2 className="size-8" />
-        </span>
+        <ConfirmationSuccess />
         <h1 className="mt-5 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
           Thank you, {order.buyerName.split(" ")[0]}!
         </h1>
