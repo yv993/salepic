@@ -2,11 +2,11 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Minus, Plus, ShoppingBag, Loader2, Check } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { addToCart } from "@/features/cart/actions";
+import { PremiumCartButton, type CartButtonState } from "./premium-cart-button";
 
 export function BuyBox({
   productId,
@@ -84,23 +84,21 @@ export function BuyBox({
         </span>
       </div>
 
-      <Button size="lg" disabled={soldOut || pending} onClick={add}>
-        {pending ? (
-          <>
-            <Loader2 className="size-4 animate-spin" /> Adding…
-          </>
-        ) : done ? (
-          <>
-            <Check className="size-4" /> Added to cart
-          </>
-        ) : soldOut ? (
-          "Sold out"
-        ) : (
-          <>
-            <ShoppingBag className="size-4" /> Add to cart
-          </>
-        )}
-      </Button>
+      <PremiumCartButton
+        size="lg"
+        className="w-full"
+        onClick={add}
+        label="Add to cart"
+        state={
+          (soldOut
+            ? "soldout"
+            : pending
+              ? "pending"
+              : done
+                ? "done"
+                : "idle") as CartButtonState
+        }
+      />
     </div>
   );
 }

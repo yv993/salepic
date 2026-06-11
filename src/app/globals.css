@@ -122,54 +122,54 @@
   100% { transform: translateX(100%); }
 }
 
-/* ------------------------------------------- light theme (default) — paper */
+/* -------------------------------- light theme (default) — "Atelier Paper" */
 :root {
-  --background: #faf5ec; /* warm paper */
-  --foreground: #281f15; /* espresso ink — ~13:1 on paper */
-  --card: #fffdf7;
-  --card-foreground: #281f15;
-  --popover: #fffdf7;
-  --popover-foreground: #281f15;
-  --primary: #ad4429; /* sealing-wax clay — ~4.8:1 as text on paper (AA) */
-  --primary-foreground: #fdf4e8;
-  --secondary: #efe4d2;
-  --secondary-foreground: #3e352a;
-  --muted: #f1e8d8;
-  --muted-foreground: #6b5d4e; /* AA-tuned muted body text (~4.8:1) */
-  --accent: #f4ead4;
-  --accent-foreground: #3e352a;
+  --background: #f4eee1; /* warm paper, a touch deeper so cards lift off it */
+  --foreground: #231a10; /* deep espresso ink — ~14:1 on cards */
+  --card: #fffefb; /* near-white warm — crisp elevation */
+  --card-foreground: #231a10;
+  --popover: #fffefb;
+  --popover-foreground: #231a10;
+  --primary: #a83c22; /* deepened sealing-wax clay — ~5.4:1 as text (AA) */
+  --primary-foreground: #fef6ec;
+  --secondary: #ece0cb;
+  --secondary-foreground: #3a3127;
+  --muted: #ece2cf;
+  --muted-foreground: #655647; /* AA muted body text (~5:1) */
+  --accent: #f2e6cf;
+  --accent-foreground: #3a3127;
   --destructive: #b03410;
-  --border: #e7dbc5;
-  --input: #d7c9af;
-  --ring: #ad4429;
-  --chart-1: #ad4429;
-  --chart-2: #d98a2b;
+  --border: #e4d7bf;
+  --input: #d6c8ab;
+  --ring: #a83c22;
+  --chart-1: #a83c22;
+  --chart-2: #c98b2e; /* burnished gold accent — echoes the dark theme */
   --chart-3: #6f7d5e;
   --chart-4: #e0972e;
   --chart-5: #9c6b4a;
-  --radius: 0.8rem;
-  /* Soft, warm, layered paper elevation scale (3-4 layers) */
-  --shadow-1: 0 1px 2px -1px rgba(74, 55, 40, 0.14);
+  --radius: 0.85rem;
+  /* Warm, layered paper elevation — deeper for a premium, tactile feel. */
+  --shadow-1: 0 1px 2px -1px rgba(67, 49, 33, 0.16);
   --shadow-2:
-    0 1px 2px -1px rgba(74, 55, 40, 0.12),
-    0 8px 24px -16px rgba(74, 55, 40, 0.26);
+    0 1px 2px -1px rgba(67, 49, 33, 0.14),
+    0 10px 26px -16px rgba(67, 49, 33, 0.32);
   --shadow-3:
-    0 1px 2px -1px rgba(74, 55, 40, 0.14),
-    0 2px 6px -2px rgba(74, 55, 40, 0.14),
-    0 18px 38px -20px rgba(74, 55, 40, 0.4);
+    0 1px 2px -1px rgba(67, 49, 33, 0.16),
+    0 3px 8px -3px rgba(67, 49, 33, 0.16),
+    0 22px 44px -22px rgba(67, 49, 33, 0.46);
   --shadow-4:
-    0 2px 4px -2px rgba(74, 55, 40, 0.16),
-    0 12px 28px -12px rgba(74, 55, 40, 0.34),
-    0 30px 60px -30px rgba(74, 55, 40, 0.5);
+    0 2px 5px -2px rgba(67, 49, 33, 0.18),
+    0 14px 32px -14px rgba(67, 49, 33, 0.4),
+    0 36px 70px -34px rgba(67, 49, 33, 0.56);
   --shadow-paper: var(--shadow-2);
-  --sidebar: #f4ecdd;
-  --sidebar-foreground: #41382d;
-  --sidebar-primary: #a8442b;
-  --sidebar-primary-foreground: #fdf6ee;
-  --sidebar-accent: #ece1cd;
+  --sidebar: #f1e8d6;
+  --sidebar-foreground: #3d342a;
+  --sidebar-primary: #a83c22;
+  --sidebar-primary-foreground: #fef6ee;
+  --sidebar-accent: #e9ddc7;
   --sidebar-accent-foreground: #2a2118;
-  --sidebar-border: #e2d6c0;
-  --sidebar-ring: #b0492f;
+  --sidebar-border: #e0d3bc;
+  --sidebar-ring: #a83c22;
 }
 
 /* ----------------------------- dark theme — "Obsidian Atelier" (gold accent) */
@@ -249,8 +249,9 @@
   body {
     background-color: var(--background);
     background-image:
-      radial-gradient(48rem 48rem at 100% -8%, rgba(224, 145, 58, 0.1), transparent 60%),
-      radial-gradient(42rem 42rem at -8% 4%, rgba(192, 83, 59, 0.08), transparent 58%);
+      radial-gradient(50rem 50rem at 100% -8%, rgba(201, 139, 46, 0.14), transparent 60%),
+      radial-gradient(44rem 44rem at -8% 4%, rgba(168, 60, 34, 0.09), transparent 58%),
+      radial-gradient(52rem 52rem at 50% 120%, rgba(111, 125, 94, 0.07), transparent 62%);
     background-attachment: fixed;
   }
   .dark body {

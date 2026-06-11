@@ -10,7 +10,10 @@ import { formatPrice, formatDimensions } from "@/lib/format";
 import { ProductGallery } from "@/components/store/product-gallery";
 import { BuyBox } from "@/components/store/buy-box";
 import { ProductReviews } from "@/components/store/product-reviews";
+import { RelatedPostcards } from "@/components/store/related-postcards";
 import { Skeleton } from "@/components/ui/skeleton";
+
+const SITE_URL = "https://posted.example";
 
 type Params = Promise<{ slug: string }>;
 
@@ -55,8 +58,34 @@ async function ProductDetail({ params }: { params: Params }) {
   const dims = formatDimensions(product.widthMm, product.heightMm);
   const images = [product.imageUrl, ...(product.images ?? [])];
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.title,
+    description:
+      product.description ??
+      `${product.title} — an original hand-illustrated postcard.`,
+    image: [`${SITE_URL}${product.imageUrl}`],
+    brand: { "@type": "Brand", name: "Posted." },
+    category: cat.label,
+    offers: {
+      "@type": "Offer",
+      price: (product.priceCents / 100).toFixed(2),
+      priceCurrency: product.currency,
+      availability:
+        product.stock > 0
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+      url: `${SITE_URL}/postcards/${product.slug}`,
+    },
+  };
+
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link
         href="/postcards"
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -112,6 +141,8 @@ async function ProductDetail({ params }: { params: Params }) {
       </div>
 
       <ProductReviews productId={product.id} productTitle={product.title} />
+
+      <RelatedPostcards category={product.category} currentSlug={product.slug} />
     </div>
   );
 }

@@ -84,7 +84,6 @@ export function PostcardCard({
             title={product.title}
             soldOut={soldOut}
             size="sm"
-            variant="secondary"
             className="w-full"
           />
         </div>

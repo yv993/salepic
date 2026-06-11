@@ -2,10 +2,9 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2, Check, ShoppingBag } from "lucide-react";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
 import { addToCart } from "@/features/cart/actions";
+import { PremiumCartButton, type CartButtonState } from "./premium-cart-button";
 
 type Props = {
   productId: string;
@@ -14,7 +13,6 @@ type Props = {
   soldOut?: boolean;
   className?: string;
   size?: "sm" | "default" | "lg";
-  variant?: "default" | "secondary" | "outline";
   label?: string;
 };
 
@@ -25,7 +23,6 @@ export function AddToCartButton({
   soldOut = false,
   className,
   size = "default",
-  variant = "default",
   label = "Add to cart",
 }: Props) {
   const [pending, startTransition] = useTransition();
@@ -33,6 +30,7 @@ export function AddToCartButton({
   const router = useRouter();
 
   function onClick() {
+    if (soldOut) return;
     startTransition(async () => {
       const res = await addToCart(productId, qty);
       if (!res.ok) {
@@ -49,33 +47,22 @@ export function AddToCartButton({
     });
   }
 
+  const state: CartButtonState = soldOut
+    ? "soldout"
+    : pending
+      ? "pending"
+      : done
+        ? "done"
+        : "idle";
+
   return (
-    <Button
-      type="button"
+    <PremiumCartButton
+      state={state}
       onClick={onClick}
-      disabled={pending || soldOut}
+      label={label}
       size={size}
-      variant={variant}
       className={className}
-    >
-      {soldOut ? (
-        "Sold out"
-      ) : pending ? (
-        <>
-          <Loader2 className="size-4 animate-spin" />
-          Adding…
-        </>
-      ) : done ? (
-        <>
-          <Check className="size-4" />
-          Added
-        </>
-      ) : (
-        <>
-          <ShoppingBag className="size-4" />
-          {label}
-        </>
-      )}
-    </Button>
+      ariaLabel={`Add ${title} to cart`}
+    />
   );
 }

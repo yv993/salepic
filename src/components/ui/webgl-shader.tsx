@@ -13,7 +13,7 @@ import * as THREE from "three";
  *  - PAUSES offscreen via IntersectionObserver (battery/perf).
  *  - GLSL1 RawShaderMaterial (compiles under WebGL2); full dispose on unmount.
  */
-export function WebGLShader() {
+export function WebGLShader({ light = false }: { light?: boolean } = {}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -45,6 +45,15 @@ export function WebGLShader() {
       uGold: { value: new THREE.Vector3(217 / 255, 164 / 255, 65 / 255) },
       uSteel: { value: new THREE.Vector3(93 / 255, 111 / 255, 116 / 255) },
       uMouse: { value: [0, 0] as [number, number] },
+      // Light mode: render warm filaments AS ink subtracted from a cream paper
+      // (uInvert=1), at lower intensity so it's soft on cream — not harsh.
+      uInvert: { value: light ? 1 : 0 },
+      uPaper: {
+        value: light
+          ? new THREE.Vector3(244 / 255, 238 / 255, 225 / 255)
+          : new THREE.Vector3(0, 0, 0),
+      },
+      uIntensity: { value: light ? 0.034 : 0.05 },
     };
     // Smoothed pointer target in shader space (set on pointermove, lerped in loop).
     const mouseTarget: [number, number] = [0, 0];
@@ -64,6 +73,9 @@ export function WebGLShader() {
       uniform vec3 uGold;
       uniform vec3 uSteel;
       uniform vec2 uMouse;
+      uniform float uInvert;
+      uniform vec3 uPaper;
+      uniform float uIntensity;
       void main() {
         vec2 p = (gl_FragCoord.xy * 2.0 - resolution) / min(resolution.x, resolution.y);
         // filaments drift gently toward the cursor
@@ -72,14 +84,16 @@ export function WebGLShader() {
         float rx = q.x * (1.0 + d);
         float gx = q.x;
         float bx = q.x * (1.0 - d);
-        float r = 0.05 / abs(q.y + sin((rx + time) * xScale) * yScale);
-        float g = 0.05 / abs(q.y + sin((gx + time) * xScale) * yScale);
-        float b = 0.05 / abs(q.y + sin((bx + time) * xScale) * yScale);
+        float r = uIntensity / abs(q.y + sin((rx + time) * xScale) * yScale);
+        float g = uIntensity / abs(q.y + sin((gx + time) * xScale) * yScale);
+        float b = uIntensity / abs(q.y + sin((bx + time) * xScale) * yScale);
         vec3 col = r * uClay + g * uGold + b * uSteel;
-        // soft gold glow that follows the cursor
-        float mg = 0.045 / (length(p - uMouse) + 0.16);
+        // soft glow that follows the cursor
+        float mg = (uIntensity * 0.9) / (length(p - uMouse) + 0.16);
         col += mg * uGold * 0.6;
-        gl_FragColor = vec4(col, 1.0);
+        // dark: additive glow on black. light: warm ink subtracted from paper.
+        vec3 outc = mix(col, clamp(uPaper - col, 0.0, 1.0), uInvert);
+        gl_FragColor = vec4(outc, 1.0);
       }
     `;
 
@@ -132,7 +146,7 @@ export function WebGLShader() {
         antialias: true,
         powerPreference: "low-power",
       });
-      renderer.setClearColor(new THREE.Color(0x0b0b0d));
+      renderer.setClearColor(new THREE.Color(light ? 0xf4eee1 : 0x0b0b0d));
       scene = new THREE.Scene();
       camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, -1);
 
@@ -191,7 +205,7 @@ export function WebGLShader() {
       }
       renderer?.dispose();
     };
-  }, []);
+  }, [light]);
 
   return (
     <canvas

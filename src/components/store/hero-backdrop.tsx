@@ -13,11 +13,12 @@ const WebGLShader = dynamic(
 );
 
 /**
- * Backmost hero layer: the recolored WebGL shader behind a readability scrim
- * (radial darken + bottom-to-top gradient + edge blur) so the headline/CTAs
- * keep WCAG AA contrast. DARK MODE ONLY — in light the hero falls back to its
- * existing glow/grid (this renders nothing, so three.js never loads in light).
- * pointer-events-none throughout, so it never blocks clicks.
+ * Backmost hero layer: the recolored WebGL shader behind a readability scrim.
+ * Renders in BOTH themes — dark = glowing filaments on obsidian; light = warm
+ * ink filaments on cream (lower intensity, paper-tuned scrim) so the headline
+ * keeps WCAG AA contrast either way. Lazy-loaded, reduced-motion gated inside
+ * the shader, pointer-events-none throughout. The shader remounts on theme
+ * change (key) to recolour cleanly.
  */
 export function HeroBackdrop() {
   const { resolvedTheme } = useTheme();
@@ -27,18 +28,29 @@ export function HeroBackdrop() {
     setMounted(true);
   }, []);
 
-  if (!mounted || resolvedTheme !== "dark") return null;
+  // Avoid SSR/first-paint mismatch: render nothing until the theme is known.
+  if (!mounted) return null;
+  const light = resolvedTheme === "light";
 
   return (
     <div
       aria-hidden
       className="pointer-events-none absolute inset-0 -z-20 overflow-hidden"
     >
-      <WebGLShader />
+      <WebGLShader key={resolvedTheme} light={light} />
 
       {/* Readability scrim — keeps hero text AA over the animated canvas. */}
-      <div className="absolute inset-0 bg-[radial-gradient(75%_60%_at_30%_42%,rgba(12,10,6,0.30),rgba(12,10,6,0.72))]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b0d] via-[#0b0b0d]/45 to-[#0b0b0d]/25" />
+      {light ? (
+        <>
+          <div className="absolute inset-0 bg-[radial-gradient(75%_60%_at_30%_42%,rgba(244,238,225,0.20),rgba(244,238,225,0.66))]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#f4eee1] via-[#f4eee1]/40 to-[#f4eee1]/20" />
+        </>
+      ) : (
+        <>
+          <div className="absolute inset-0 bg-[radial-gradient(75%_60%_at_30%_42%,rgba(12,10,6,0.30),rgba(12,10,6,0.72))]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b0d] via-[#0b0b0d]/45 to-[#0b0b0d]/25" />
+        </>
+      )}
       {/* soft bottom edge so it blends into the page below */}
       <ProgressiveBlur
         direction="bottom"
