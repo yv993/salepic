@@ -541,3 +541,27 @@
 .has-custom-cursor label {
   cursor: none;
 }
+
+/* ----------------------------------------------------- Lenis smooth scroll
+   Required integration CSS. Lenis adds `.lenis .lenis-smooth` to <html>; these
+   rules stop the native CSS `scroll-behavior: smooth` from fighting Lenis's
+   JS-driven scroll, keep height auto, let modals/overflow areas opt out with
+   `data-lenis-prevent`, and lock scroll while Lenis is stopped. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+/* This Lenis build adds only `.lenis` to <html> (not `.lenis-smooth`), so
+   target `.lenis` directly to override the native smooth scroll-behavior. */
+html.lenis {
+  scroll-behavior: auto !important;
+}
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis iframe {
+  pointer-events: none;
+}

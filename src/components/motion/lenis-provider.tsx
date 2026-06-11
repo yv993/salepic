@@ -16,7 +16,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
 
     import("lenis").then(({ default: Lenis }) => {
       if (cancelled) return;
-      lenis = new Lenis({ duration: 1.05, smoothWheel: true });
+      lenis = new Lenis({ duration: 1.05, smoothWheel: true, anchors: true });
       const loop = (t: number) => {
         lenis?.raf(t);
         raf = requestAnimationFrame(loop);
