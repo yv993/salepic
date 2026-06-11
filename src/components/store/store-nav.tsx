@@ -11,9 +11,9 @@ import { WishlistBadge } from "./wishlist-badge";
 
 const LINKS = [
   { href: "/postcards", label: "Shop" },
+  { href: "/collections", label: "Collections" },
   { href: "/postcards?category=travel", label: "Travel" },
-  { href: "/postcards?category=nature", label: "Nature" },
-  { href: "/postcards?category=city", label: "City" },
+  { href: "/journal", label: "Journal" },
   { href: "/about", label: "About" },
 ];
 

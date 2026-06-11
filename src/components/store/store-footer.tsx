@@ -9,7 +9,9 @@ const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] =
     heading: "Browse",
     links: [
       { label: "All postcards", href: "/postcards" },
-      ...CATEGORY_ORDER.slice(0, 4).map((c) => ({
+      { label: "Collections", href: "/collections" },
+      { label: "Journal", href: "/journal" },
+      ...CATEGORY_ORDER.slice(0, 3).map((c) => ({
         label: CATEGORY_META[c].label,
         href: `/postcards?category=${c}`,
       })),
