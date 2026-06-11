@@ -12,7 +12,7 @@ export function ProductGallery({
   title: string;
 }) {
   const [active, setActive] = useState(0);
-  const list = images.length > 0 ? images : ["/postcards/postal-nostalgia.svg"];
+  const list = images.length > 0 ? images : ["/postcards/postal-nostalgia.jpg"];
   const current = list[Math.min(active, list.length - 1)];
 
   return (

@@ -25,7 +25,7 @@ export default function AboutPage() {
       <div className="surface grain my-10 overflow-hidden rounded-3xl p-2">
         <div className="relative aspect-[2/1] overflow-hidden rounded-2xl">
           <Image
-            src="/postcards/wildflower-field.svg"
+            src="/postcards/wildflower-field.jpg"
             alt={`A postcard illustration by ${ARTIST}`}
             fill
             priority

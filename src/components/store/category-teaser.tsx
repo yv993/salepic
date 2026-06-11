@@ -17,25 +17,25 @@ type Teaser = {
 const TEASERS: Teaser[] = [
   {
     category: "travel",
-    image: "/postcards/kyoto-at-dusk.svg",
+    image: "/postcards/kyoto-at-dusk.jpg",
     blurb:
       "Postcards drawn on the road — golden hours in far-off cities and the quiet thrill of somewhere new. Perfect for the friend who's always halfway packed.",
   },
   {
     category: "nature",
-    image: "/postcards/wildflower-field.svg",
+    image: "/postcards/wildflower-field.jpg",
     blurb:
       "Mountains, meadows, and changing weather, rendered in soft washes. The slow, green antidote to a busy week.",
   },
   {
     category: "city",
-    image: "/postcards/neon-district.svg",
+    image: "/postcards/neon-district.jpg",
     blurb:
       "Rain-slick streets and electric signage after dark. For the night owls and the homesick city-dwellers.",
   },
   {
     category: "typography",
-    image: "/postcards/hello-sunshine.svg",
+    image: "/postcards/hello-sunshine.jpg",
     blurb:
       "Hand-lettered words worth sending — a little burst of warmth that says more than the message inside.",
   },

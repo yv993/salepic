@@ -130,7 +130,7 @@ export const SEED: NewProduct[] = (
     description: d.description,
     priceCents: d.priceCents,
     category,
-    imageUrl: `/postcards/${d.slug}.svg`,
+    imageUrl: `/postcards/${d.slug}.jpg`,
     stock: d.stock,
     featured: d.featured ?? false,
     status: "active" as const,
