@@ -11,6 +11,7 @@ import { ProductGallery } from "@/components/store/product-gallery";
 import { BuyBox } from "@/components/store/buy-box";
 import { ProductReviews } from "@/components/store/product-reviews";
 import { RelatedPostcards } from "@/components/store/related-postcards";
+import { WishlistButton } from "@/components/store/wishlist-button";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const SITE_URL = "https://posted.example";
@@ -140,11 +141,18 @@ async function ProductDetail({ params }: { params: Params }) {
             </p>
           )}
 
-          <div className="mt-8">
-            <BuyBox
+          <div className="mt-8 flex items-end gap-3">
+            <div className="flex-1">
+              <BuyBox
+                productId={product.id}
+                title={product.title}
+                stock={product.stock}
+              />
+            </div>
+            <WishlistButton
               productId={product.id}
               title={product.title}
-              stock={product.stock}
+              variant="labelled"
             />
           </div>
 

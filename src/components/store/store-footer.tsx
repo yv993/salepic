@@ -20,6 +20,7 @@ const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] =
     links: [
       { label: "About the artist", href: "/about" },
       { label: "New arrivals", href: "/postcards?sort=newest" },
+      { label: "Your wishlist", href: "/wishlist" },
       { label: "Studio admin", href: "/admin" },
     ],
   },

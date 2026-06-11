@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { Brand } from "@/components/brand";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { SearchDialog, type SearchItem } from "./search-dialog";
+import { WishlistBadge } from "./wishlist-badge";
 
 const LINKS = [
   { href: "/postcards", label: "Shop" },
@@ -20,7 +22,13 @@ const LINKS = [
  * prerenders into the shell on every route, including dynamic ones. The dynamic
  * cart count is passed in as `cartSlot` (a server <Suspense> boundary).
  */
-export function StoreNav({ cartSlot }: { cartSlot: React.ReactNode }) {
+export function StoreNav({
+  cartSlot,
+  searchProducts = [],
+}: {
+  cartSlot: React.ReactNode;
+  searchProducts?: SearchItem[];
+}) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -41,7 +49,9 @@ export function StoreNav({ cartSlot }: { cartSlot: React.ReactNode }) {
         </nav>
 
         <div className="flex items-center gap-1">
+          <SearchDialog products={searchProducts} />
           <ThemeToggle />
+          <WishlistBadge />
           {cartSlot}
           <button
             type="button"
