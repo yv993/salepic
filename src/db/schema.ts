@@ -200,6 +200,50 @@ export const reviews = pgTable(
   ],
 );
 
+/**
+ * A buyer's saved shipping address (tied to the Clerk user id). Optional —
+ * guest checkout never touches this.
+ */
+export const savedAddresses = pgTable(
+  "saved_addresses",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: text("user_id").notNull(),
+    label: text("label"),
+    name: text("name").notNull(),
+    line1: text("line1").notNull(),
+    line2: text("line2"),
+    city: text("city").notNull(),
+    state: text("state"),
+    postal: text("postal").notNull(),
+    country: text("country").notNull(),
+    isDefault: boolean("is_default").notNull().default(false),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (t) => [index("saved_addresses_user_idx").on(t.userId)],
+);
+
+/** A buyer's account wishlist item (persisted; merged from the cookie on sign-in). */
+export const accountWishlist = pgTable(
+  "account_wishlist",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: text("user_id").notNull(),
+    productId: uuid("product_id")
+      .notNull()
+      .references(() => products.id, { onDelete: "cascade" }),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (t) => [
+    uniqueIndex("account_wishlist_user_product_idx").on(t.userId, t.productId),
+    index("account_wishlist_user_idx").on(t.userId),
+  ],
+);
+
 /* ------------------------------------------------------------ relations */
 
 export const ordersRelations = relations(orders, ({ many }) => ({
@@ -238,6 +282,9 @@ export const reviewsRelations = relations(reviews, ({ one }) => ({
 
 export type Product = typeof products.$inferSelect;
 export type NewProduct = typeof products.$inferInsert;
+export type SavedAddress = typeof savedAddresses.$inferSelect;
+export type NewSavedAddress = typeof savedAddresses.$inferInsert;
+export type AccountWishlistItem = typeof accountWishlist.$inferSelect;
 export type Order = typeof orders.$inferSelect;
 export type NewOrder = typeof orders.$inferInsert;
 export type OrderItem = typeof orderItems.$inferSelect;

@@ -17,6 +17,7 @@ import { CATEGORY_ORDER, CATEGORY_META } from "@/features/products/constants";
 import { COLLECTIONS } from "@/features/collections/data";
 import { SearchDialog, type SearchItem } from "./search-dialog";
 import { WishlistBadge } from "./wishlist-badge";
+import { AccountMenu } from "./account-menu";
 
 const LINKS = [
   { href: "/postcards", label: "Shop", match: "/postcards" },
@@ -142,6 +143,7 @@ export function StoreNav({
           <SearchDialog products={searchProducts} />
           <ThemeToggle />
           <WishlistBadge />
+          <AccountMenu />
           {cartSlot}
           <button
             type="button"

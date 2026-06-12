@@ -18,14 +18,32 @@ import { type ActionState } from "@/lib/action-state";
 import { placeOrder } from "@/features/checkout/actions";
 import { COUNTRIES } from "@/features/checkout/constants";
 
-export function CheckoutForm() {
+export type CheckoutDefaults = {
+  buyerName?: string;
+  buyerEmail?: string;
+  shippingLine1?: string;
+  shippingLine2?: string;
+  shippingCity?: string;
+  shippingState?: string;
+  shippingPostal?: string;
+  shippingCountry?: string;
+};
+
+export function CheckoutForm({ defaults }: { defaults?: CheckoutDefaults }) {
   const [state, formAction] = useActionState<ActionState, FormData>(
     placeOrder,
     {},
   );
+  const d = defaults ?? {};
+  const prefilled = Boolean(d.buyerEmail);
 
   return (
     <form action={formAction} className="space-y-8">
+      {prefilled && (
+        <p className="rounded-lg bg-primary/10 px-3 py-2 text-sm text-primary">
+          Prefilled from your account — edit anything before placing the order.
+        </p>
+      )}
       {/* Honeypot — hidden from humans; bots that fill it are rejected. */}
       <div aria-hidden className="sr-only">
         <label htmlFor="company">Company</label>
@@ -39,6 +57,7 @@ export function CheckoutForm() {
             name="buyerName"
             required
             placeholder="Jordan Rivera"
+            defaultValue={d.buyerName}
             error={state.fieldErrors?.buyerName}
           />
           <Field
@@ -47,6 +66,7 @@ export function CheckoutForm() {
             type="email"
             required
             placeholder="jordan@example.com"
+            defaultValue={d.buyerEmail}
             error={state.fieldErrors?.buyerEmail}
           />
         </div>
@@ -59,12 +79,14 @@ export function CheckoutForm() {
           name="shippingLine1"
           required
           placeholder="12 Maple Street"
+          defaultValue={d.shippingLine1}
           error={state.fieldErrors?.shippingLine1}
         />
         <Field
           label="Address line 2"
           name="shippingLine2"
           placeholder="Apartment, suite, etc. (optional)"
+          defaultValue={d.shippingLine2}
           error={state.fieldErrors?.shippingLine2}
         />
         <div className="grid gap-5 sm:grid-cols-2">
@@ -73,12 +95,14 @@ export function CheckoutForm() {
             name="shippingCity"
             required
             placeholder="Portland"
+            defaultValue={d.shippingCity}
             error={state.fieldErrors?.shippingCity}
           />
           <Field
             label="State / Region"
             name="shippingState"
             placeholder="OR"
+            defaultValue={d.shippingState}
             error={state.fieldErrors?.shippingState}
           />
         </div>
@@ -88,13 +112,14 @@ export function CheckoutForm() {
             name="shippingPostal"
             required
             placeholder="97201"
+            defaultValue={d.shippingPostal}
             error={state.fieldErrors?.shippingPostal}
           />
           <div className="space-y-1.5">
             <Label htmlFor="shippingCountry">
               Country<span className="text-primary"> *</span>
             </Label>
-            <Select name="shippingCountry" defaultValue="United States">
+            <Select name="shippingCountry" defaultValue={d.shippingCountry || "United States"}>
               <SelectTrigger id="shippingCountry" className="w-full">
                 <SelectValue />
               </SelectTrigger>
@@ -164,6 +189,7 @@ function Field({
   placeholder,
   required,
   error,
+  defaultValue,
 }: {
   label: string;
   name: string;
@@ -171,6 +197,7 @@ function Field({
   placeholder?: string;
   required?: boolean;
   error?: string;
+  defaultValue?: string;
 }) {
   return (
     <div className="space-y-1.5">
@@ -183,6 +210,7 @@ function Field({
         name={name}
         type={type}
         placeholder={placeholder}
+        defaultValue={defaultValue}
         aria-invalid={Boolean(error)}
       />
       {error && <p className="text-xs text-destructive">{error}</p>}

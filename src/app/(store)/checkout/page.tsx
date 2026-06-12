@@ -9,7 +9,9 @@ import { NumberTicker } from "@/components/ui/number-ticker";
 import { formatPrice } from "@/lib/format";
 import { getCart } from "@/features/cart/cart";
 import { computeShippingCents } from "@/features/checkout/constants";
-import { CheckoutForm } from "@/components/store/checkout-form";
+import { CheckoutForm, type CheckoutDefaults } from "@/components/store/checkout-form";
+import { getBuyer } from "@/lib/auth";
+import { getDefaultAddress } from "@/features/account/queries";
 
 export const metadata: Metadata = { title: "Checkout" };
 
@@ -41,10 +43,27 @@ async function CheckoutContents() {
   const shippingCents = computeShippingCents(cart.subtotalCents);
   const totalCents = cart.subtotalCents + shippingCents;
 
+  // Prefill from the signed-in buyer's profile + default address (guest = none).
+  const buyer = await getBuyer();
+  let defaults: CheckoutDefaults | undefined;
+  if (buyer) {
+    const addr = await getDefaultAddress(buyer.userId);
+    defaults = {
+      buyerName: addr?.name || buyer.name || undefined,
+      buyerEmail: buyer.email,
+      shippingLine1: addr?.line1,
+      shippingLine2: addr?.line2 ?? undefined,
+      shippingCity: addr?.city,
+      shippingState: addr?.state ?? undefined,
+      shippingPostal: addr?.postal,
+      shippingCountry: addr?.country,
+    };
+  }
+
   return (
     <div className="mt-8 grid gap-10 lg:grid-cols-[1.4fr_1fr]">
       <div className="order-2 lg:order-1">
-        <CheckoutForm />
+        <CheckoutForm defaults={defaults} />
       </div>
 
       <aside className="order-1 h-fit lg:order-2 lg:sticky lg:top-24">

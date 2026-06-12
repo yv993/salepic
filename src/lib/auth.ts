@@ -57,3 +57,29 @@ export async function isAdmin(): Promise<boolean> {
     return false;
   }
 }
+
+export type Buyer = { userId: string; email: string; name: string };
+
+/**
+ * The signed-in buyer (any authenticated Clerk user), or null. Non-throwing —
+ * returns null when signed out OR when Clerk isn't configured. Read OUTSIDE
+ * `use cache`. Powers the /account area + checkout prefill.
+ */
+export async function getBuyer(): Promise<Buyer | null> {
+  try {
+    const { currentUser } = await import("@clerk/nextjs/server");
+    const user = await currentUser();
+    if (!user) return null;
+    const email =
+      user.emailAddresses.find((e) => e.id === user.primaryEmailAddressId)
+        ?.emailAddress ?? user.emailAddresses[0]?.emailAddress;
+    if (!email) return null;
+    const name =
+      [user.firstName, user.lastName].filter(Boolean).join(" ") ||
+      user.username ||
+      "";
+    return { userId: user.id, email, name };
+  } catch {
+    return null;
+  }
+}

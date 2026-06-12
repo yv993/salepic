@@ -12,6 +12,8 @@ import { getOrderByNumber } from "@/features/orders/queries";
 import { ORDER_STATUS_META } from "@/features/orders/constants";
 import { getReviewAccess } from "@/features/reviews/access";
 import { OrderReviewItem } from "@/components/store/order-review-item";
+import { getBuyer } from "@/lib/auth";
+import { isClerkConfigured } from "@/lib/clerk-config";
 
 export const metadata: Metadata = {
   title: "Order confirmation",
@@ -35,6 +37,10 @@ async function Confirmation({ params }: { params: Params }) {
 
   const status = ORDER_STATUS_META[order.status];
   const pending = order.status === "pending_payment";
+
+  // Offer account creation to signed-out guests (only when Clerk is configured).
+  const buyer = await getBuyer();
+  const offerAccount = isClerkConfigured() && !buyer;
 
   // Per-item review access (reads Clerk auth — fine here, this page is dynamic
   // under <Suspense>). Only items still linked to a product are reviewable.
@@ -217,6 +223,26 @@ async function Confirmation({ params }: { params: Params }) {
               </li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {offerAccount && (
+        <div className="surface mt-6 flex flex-col items-center gap-3 rounded-2xl p-6 text-center">
+          <h2 className="font-heading text-lg font-semibold">
+            Track this order — create an account
+          </h2>
+          <p className="max-w-md text-sm text-muted-foreground">
+            Sign up with{" "}
+            <span className="font-medium text-foreground">{order.buyerEmail}</span>{" "}
+            to see this order (and future ones) in your account, save addresses,
+            and keep a wishlist.
+          </p>
+          <Button
+            className="mt-1"
+            render={<Link href="/sign-up?redirect_url=/account" />}
+          >
+            Create an account
+          </Button>
         </div>
       )}
 

@@ -11,7 +11,7 @@ import { isClerkConfigured } from "@/lib/clerk-config";
  * so the store works with zero accounts; /admin then renders its "configure
  * Clerk" / forbidden state instead of crashing.
  */
-const isProtectedRoute = createRouteMatcher(["/admin(.*)"]);
+const isProtectedRoute = createRouteMatcher(["/admin(.*)", "/account(.*)"]);
 
 const clerk = clerkMiddleware(async (auth, req) => {
   if (isProtectedRoute(req)) {

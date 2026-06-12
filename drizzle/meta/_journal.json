@@ -15,6 +15,13 @@
       "when": 1781149671912,
       "tag": "0001_funny_frightful_four",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1781225575178,
+      "tag": "0002_open_dakota_north",
+      "breakpoints": true
     }
   ]
 }
